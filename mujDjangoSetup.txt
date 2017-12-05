@@ -1,0 +1,37 @@
+djangoproject.com --> guides n stuff
+
+https://stackoverflow.com/questions/35991403/python-pip-install-gives-command-python-setup-py-egg-info-failed-with-error-c	--> to solve error when installing django into virtualenv (try pip3 tho)
+
+https://docs.djangoproject.com/en/2.0/topics/install/#installing-official-release --guide
+
+1. There should be python
+2. Install pip (pip3, no idea if there is any difference)
+3. Install virtualenvs and virtualenvswrapper
+	-to install virtualenvs, you only need to download something
+	-to install venvswrapper, you have to download and than add 3 lines somewhere into your .bashrc file (in home folder)
+
+TO SETUP || SWITCH VIRTUALENV: (copied this from virtualenvwrapper doc)
+    1.Run: workon
+    A list of environments, empty, is printed.
+    2.Run: mkvirtualenv temp
+    A new environment, temp is created and activated.
+    3.Run: workon
+    This time, the temp environment is included.
+
+Couldn't run django-admin startproject 'name' --> had to sudo apt install python3-django
+
+CHEATSHEET:
+django-admin startproject 'nazev'
+python3 manage.py
+
+runserver
+startapp 'nazev'		vytvori appku na danem miste (appka je modul do projektu)
+migrate
+makemigration 'appNazev'	
+sqlmigrate 'appNazev' 'cisloMigrace'	vypise sql prikaz z dane migrace
+check			autom. kontrola jestli v projektu nejsou chyby (nic nemigruje, nespousti)
+shell			spusti interaktivni pyhton shell
+createsuperuser		hadej co to asi dela (admin:changeme123)
+
+pokracovat na tut3 -->
+https://docs.djangoproject.com/en/2.0/intro/tutorial03/
