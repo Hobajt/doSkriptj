@@ -1,0 +1,26 @@
+{% load static %}
+
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="{% static 'restaurace/css/myStyle.css' %}">
+</head>
+<body>
+  <div id="title">{{ restaurant.name }}</div>
+  <div>{{ restaurant.city }}</div>
+
+  <div id="restaurantData">
+  <div class="leftCol">
+    {% for dish in restaurant.dishes.all %}
+    <div>{{ dish.name }}</div>
+    {% endfor %}
+  </div>
+
+  <div class="rightCol">
+    {% for review in restaurant.review_set.all %}
+    <div>{{ review.ratingDescription }}</div>
+    <div>{{ review.comment }}</div>
+    {% endfor %}
+  </div>
+  </div>
+</body>
+</html>

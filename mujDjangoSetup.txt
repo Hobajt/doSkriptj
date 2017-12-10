@@ -34,4 +34,4 @@ shell			spusti interaktivni pyhton shell
 createsuperuser		hadej co to asi dela (admin:changeme123)
 
 pokracovat na tut3 -->
-https://docs.djangoproject.com/en/2.0/intro/tutorial03/
+https://docs.djangoproject.com/en/2.0/intro/tutorial04/

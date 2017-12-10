@@ -1,0 +1,20 @@
+body {
+  background-color: red;
+}
+
+.leftCol {
+  float: left;
+}
+
+.rightCol {
+  float: right;
+}
+
+#restaurantData {
+
+}
+
+#restaurantData .leftCol {
+  width: 30%;
+  border-right: 1px solid black;
+}
