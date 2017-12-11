@@ -1,0 +1,27 @@
+{% load static %}
+
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="{% static 'restaurace/css/myStyle.css' %}">
+</head>
+<body>
+
+  <h1>Dish Types</h1>
+  
+  <div id="wrapper">
+
+  <table class="tab2">
+  {% for dt in dTypes %}
+    <tr>
+      <td>
+        <a href="{% url 'restaurace:infoDishType' dt.id %}">{{ dt.name }}</a>
+      </td>
+    </tr>
+  {% endfor %}
+  </table>
+
+  <div class="gap"></div>
+  <a href="{% url 'restaurace:indexDish' %}">Back to dishes</a>
+  </div>
+</body>
+</html>

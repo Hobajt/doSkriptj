@@ -1,0 +1,37 @@
+{% load static %}
+
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="{% static 'restaurace/css/myStyle.css' %}">
+</head>
+<body>
+
+<form action="{% url 'restaurace:searchDish' %}" method="post">
+	{% csrf_token %}
+	<table>
+	{{ form.as_table }}
+	</table>
+	<input type="submit" value="search">
+</form>
+  
+	<table class="tab2">
+		<tr>
+		  <td>Name</td>
+		  <td>Base price</td>
+		  <td>Type</td>
+		</tr>
+		{% for dish in dishes %}
+		  <tr>
+		    <td>
+		    <a href="{% url 'restaurace:infoDish' dish.id %}">{{ dish }}</a>
+		    </td>
+		    <td>{{ dish.basePrice }}</td>
+		    <td>{{ dish.type }}</td>
+	    	  </tr>
+		{% endfor %}
+	</table>
+
+	<div class="gap"></div>
+	<a href="{% url 'restaurace:indexDish' %}">Back to Dish Index</a>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{% load static %}
+
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="{% static 'restaurace/css/myStyle.css' %}">
+</head>
+<body>
+	<div class="title">Edit restaurant</div>
+	<form action="{% url 'restaurace:editRestaurant' form.instance.id %}" method="post">
+	{% csrf_token %}
+	<table class="tab2">
+	{{ form.as_table }}
+	</table>
+	<input type="submit" value="Edit">
+	</form>
+
+	<div class="gap"></div>
+	<a href="{% url 'restaurace:indexRestaurant' %}">Back to index</a>
+</body>
+</html>

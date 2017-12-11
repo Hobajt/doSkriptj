@@ -5,21 +5,27 @@
   <link rel="stylesheet" type="text/css" href="{% static 'restaurace/css/myStyle.css' %}">
 </head>
 <body>
+
   <h1>Dishes</h1>
 
   <div id="wrapper">
+
+  <a href="{% url 'restaurace:searchDish' %}">Search for dish</a> </br>
+  <a href="{% url 'restaurace:indexDishType' %}">Show all dish types</a>
+  <div class="gap"></div>
+
   <table>
     {% for dish in dishes %}
     <tr>
       <td>
-        <a href="{% url 'restaurace:dishInfo' dish.id %}">{{ dish.name }}</a>
+        <a href="{% url 'restaurace:infoDish' dish.id %}">{{ dish.name }}</a>
       </td>
     </tr>
     {% endfor %}
   </table>
   
   <div class="gap"></div>
-  <a href="{% url 'restaurace:index' %}"> Show me restaurants</a>
+  <a href="{% url 'restaurace:indexRestaurant' %}"> Show me restaurants</a>
   </wrapper>
 </body>
 </html>

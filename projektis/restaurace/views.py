@@ -1,36 +1,43 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
+from django.urls import reverse
 
 from .models import Restaurant, Review, Dish, DishType
-from .forms import RestaurantSearchForm
+from .forms import SearchFormRestaurant, SearchFormDish, EditFormRestaurant
 
-def index(request):
+def indexRestaurant(request):
     restaurants = Restaurant.objects.all().order_by("name")
-    return render(request, 'restaurace/index.html', {'restaurants': restaurants})
+    return render(request, 'restaurace/indexRestaurant.html', {'restaurants': restaurants})
 
-def resInfo(request, id_restaurant):
-    restaurant= get_object_or_404(Restaurant, pk=id_restaurant)
-    return render(request, 'restaurace/resInfo.html', {'restaurant': restaurant})
-
-def dishIndex(request):
+def indexDish(request):
     dishes= Dish.objects.all().order_by("name")
-    return render(request, 'restaurace/dishIndex.html', {'dishes': dishes})
+    return render(request, 'restaurace/indexDish.html', {'dishes': dishes})
 
-def dishInfo(request, id_dish):
+def indexDishType(request):
+    dt= DishType.objects.all().order_by("name")
+    return render(request, 'restaurace/indexDishType.html', {'dTypes': dt})
+
+
+def infoRestaurant(request, id_restaurant):
+    restaurant= get_object_or_404(Restaurant, pk=id_restaurant)
+    return render(request, 'restaurace/infoRestaurant.html', {'restaurant': restaurant})
+
+def infoDish(request, id_dish):
     dish= get_object_or_404(Dish, pk=id_dish)
-    return render(request, 'restaurace/dishInfo.html', {'dish': dish})
+    return render(request, 'restaurace/infoDish.html', {'dish': dish})
 
-def dishByType(request, id_dishType):
+def infoDishType(request, id_dishType):
     dishType= get_object_or_404(DishType, pk=id_dishType)
-    return render(request, 'restaurace/dishByType.html', {'dishType': dishType})
+    return render(request, 'restaurace/infoDishType.html', {'dishType': dishType})
 
-def reviewInfo(request, id_review):
+def infoReview(request, id_review):
     review= get_object_or_404(Review, pk=id_review)
-    return render(request, 'restaurace/reviewInfo.html', {'review': review})
+    return render(request, 'restaurace/infoReview.html', {'review': review})
 
-def restaurantSearch(request):
+
+def searchRestaurant(request):
     if request.method == 'POST':
-        form= RestaurantSearchForm(request.POST)
+        form= SearchFormRestaurant(request.POST)
         if form.is_valid():
             searchString= form.cleaned_data['searchString']
             byName= form.cleaned_data['searchByName']
@@ -42,11 +49,68 @@ def restaurantSearch(request):
             res= None
     else:
         res= None
-        form= RestaurantSearchForm()
-    return render(request, 'restaurace/restaurantSearch.html', {'restaurants':res, 'form': form})
+        form= SearchFormRestaurant()
+    return render(request, 'restaurace/searchRestaurant.html', {'restaurants':res, 'form': form})
 
-def dishSearch(request):
+def searchDish(request):
+    if request.method == 'POST':
+        form= SearchFormDish(request.POST)
+        if form.is_valid():
+            searchString= form.cleaned_data['searchString']
+            limitPrice= form.cleaned_data['limitPrice']
+            priceFrom= form.cleaned_data['price_from']
+            priceTo= form.cleaned_data['price_to']
+            filters= {'name__icontains':searchString}
+            if limitPrice == True:
+                filters['basePrice__gte']= priceFrom
+                filters['basePrice__lte']= priceTo
+
+            dish= Dish.objects.filter(**filters)
+        else:
+            dish= None
+    else:
+        dish= None
+        form= SearchFormDish()
+    return render(request, 'restaurace/searchDish.html', {'dishes':dish, 'form': form})    
+
+
+def editRestaurant(request, id_restaurant):
+    res= get_object_or_404(Restaurant, pk=id_restaurant)
+    if request.method == 'POST':
+        form = EditFormRestaurant(request.POST, instance = res)
+        if form.is_valid():
+            res= form.save()
+            return HttpResponseRedirect(reverse('restaurace:infoRestaurant', args=(res.id,)))
+    else:
+        form= EditFormRestaurant(instance= res)
+    return render(request, 'restaurace/editRestaurant.html', {'form': form})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     
-
 
 

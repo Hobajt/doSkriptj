@@ -8,21 +8,21 @@
   <h1>Restaurace</h1>
   
   <div id="wrapper">
-  <a href="{% url 'restaurace:restaurantSearch' %}">Search for restaurant</a>
+  <a href="{% url 'restaurace:searchRestaurant' %}">Search for restaurant</a>
   <div class="gap"></div>
 
   <table>
   {% for restaurant in restaurants %}
     <tr>
       <td>
-        <a href="{% url 'restaurace:resInfo' restaurant.id %}">{{ restaurant.name }}</a>
+        <a href="{% url 'restaurace:infoRestaurant' restaurant.id %}">{{ restaurant }}</a>
       </td>
     </tr>
   {% endfor %}
   </table>
 
   <div class="gap"></div>
-  <a href="{% url 'restaurace:dishIndex' %}">Show me dishes</a>
+  <a href="{% url 'restaurace:indexDish' %}">Show me dishes</a>
   </div>
 </body>
 </html>

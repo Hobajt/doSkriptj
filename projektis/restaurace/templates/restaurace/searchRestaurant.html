@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<form action="{% url 'restaurace:restaurantSearch' %}" method="post">
+<form action="{% url 'restaurace:searchRestaurant' %}" method="post">
 	{% csrf_token %}
 	<table>
 	{{ form.as_table }}
@@ -16,11 +16,11 @@
   
 	<table class="tab2">
 		{% for restaurant in restaurants %}
-			<tr><td><a href="{% url 'restaurace:resInfo' restaurant.id %}">{{ restaurant }}</a></td></tr>
+			<tr><td><a href="{% url 'restaurace:infoRestaurant' restaurant.id %}">{{ restaurant }}</a></td></tr>
 		{% endfor %}
 	</table>
 
 	<div class="gap"></div>
-	<a href="{% url 'restaurace:index' %}">Back to index</a>
+	<a href="{% url 'restaurace:indexRestaurant' %}">Back to index</a>
 </body>
 </html>

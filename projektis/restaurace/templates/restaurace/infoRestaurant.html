@@ -17,7 +17,7 @@
   <table class="tab2">
       {% for dish in restaurant.dishinrestaurant_set.all %}
         <tr>
-          <td><a href="{% url 'restaurace:dishInfo' dish.dish.id %}">{{ dish.dish.name }}</a></td>
+          <td><a href="{% url 'restaurace:infoDish' dish.dish.id %}">{{ dish.dish.name }}</a></td>
           <td>{{ dish.price }}</td>
         </tr>
       {% endfor %}
@@ -27,14 +27,15 @@
   <table class="tab3">
       {% for review in restaurant.review_set.all %}
         <tr>
-          <td><a href="{% url 'restaurace:reviewInfo' review.id %}">{{ review.comment }}</a></td>
+          <td><a href="{% url 'restaurace:infoReview' review.id %}">{{ review.comment }}</a></td>
           <td>{{ review.ratingDescription }}</td>
         </tr>
       {% endfor %}
   </table>
 
   <div class="gap"></div>
-  <a href="{% url 'restaurace:index' %}">Back to Restaurant list</a>
+  <a href="{% url 'restaurace:editRestaurant' restaurant.id %}">Edit this restaurant</a></br>
+  <a href="{% url 'restaurace:indexRestaurant' %}">Back to Restaurant list</a>
   </div>
 </body>
 </html>

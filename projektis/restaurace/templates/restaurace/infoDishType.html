@@ -16,7 +16,7 @@
       {% for dish in dishType.dish_set.all %}
         <tr>
           <td>
-            <a href="{% url 'restaurace:dishInfo' dish.id %}">{{ dish.name }}</a>
+            <a href="{% url 'restaurace:infoDish' dish.id %}">{{ dish.name }}</a>
           </td>
           <td>{{ dish.basePrice }}</td>
         </tr>
@@ -24,7 +24,7 @@
   </table>
 
   <div class="gap"></div>
-  <a href="{% url 'restaurace:dishIndex' %}">Back to all dishes</a>
+  <a href="{% url 'restaurace:indexDish' %}">Back to all dishes</a>
 
   </div>
 </body>
