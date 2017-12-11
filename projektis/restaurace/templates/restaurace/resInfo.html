@@ -5,22 +5,34 @@
   <link rel="stylesheet" type="text/css" href="{% static 'restaurace/css/myStyle.css' %}">
 </head>
 <body>
-  <div id="title">{{ restaurant.name }}</div>
-  <div>{{ restaurant.city }}</div>
+  <div id="wrapper">
 
-  <div id="restaurantData">
-  <div class="leftCol">
-    {% for dish in restaurant.dishes.all %}
-    <div>{{ dish.name }}</div>
-    {% endfor %}
-  </div>
+  <table class="tab1">
+    <th>{{ restaurant.name }}</th>
+    <tr><td>{{ restaurant.city }}</td></tr>
+    <tr><td>{{restaurant.contact }}</td></tr>
+  </table>
 
-  <div class="rightCol">
-    {% for review in restaurant.review_set.all %}
-    <div>{{ review.ratingDescription }}</div>
-    <div>{{ review.comment }}</div>
-    {% endfor %}
-  </div>
+  <div class="title">Dishes:</div>
+  <table class="tab2">
+      {% for dish in restaurant.dishinrestaurant_set.all %}
+        <tr>
+          <td>{{ dish.dish.name }}</td>
+          <td>{{ dish.price }}</td>
+        </tr>
+      {% endfor %}
+  </table>
+
+  <div class="title">Reviews:</div>
+  <table class="tab3">
+      {% for review in restaurant.review_set.all %}
+        <tr>
+          <td>{{ review.comment }}</td>
+          <td>{{ review.ratingDescription }}</td>
+        </tr>
+      {% endfor %}
+  </table>
+
   </div>
 </body>
 </html>

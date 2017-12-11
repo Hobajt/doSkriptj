@@ -1,0 +1,32 @@
+{% load static %}
+
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="{% static 'restaurace/css/myStyle.css' %}">
+</head>
+<body>
+  <div id="wrapper">
+  <table class="tab1">
+    <th>{{ dish.name }}</th>
+    <tr><td>{{ dish.type }}</td></tr>
+    <tr><td>{{ dish.basePrice }}</td></tr>
+  </table>
+  
+  <a href="{% url 'restaurace:dishByType' dish.type.id%}">See similar food</a>
+  <div class="gap"></div>
+
+  <div class="title">Served in</div>
+  <table class="tab2">
+    {% for dinRes in dish.dishinrestaurant_set.all %}
+    <tr>
+      <td>{{ dinRes.restaurant.name }}</td>
+      <td>{{ dinRes.price }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+
+  <div class="gap"></div>
+  <a href="{% url 'restaurace:dishIndex' %}">Back to all dishes</a>
+  </div>
+</body>
+</html>

@@ -1,20 +1,61 @@
 body {
-  background-color: red;
+  height: 100%;
+  margin: 0;
+  background-repeat: no-repeat;
+  padding: 0;
+  background: linear-gradient(to bottom, rgba(240,240,255,1), rgba(230,230,255,0.7), rgba(200,200,255,0.6));
+  box-sizing: border-box;
 }
 
-.leftCol {
-  float: left;
+#wrapper {
+  margin-top: 1%;
+  margin-left: 4%;
+  margin-right: 4%;
 }
 
-.rightCol {
-  float: right;
+.tab1 {
+  border: 2px ridge rgb(200,200,200);
+  border-radius: 10px;
+  text-align: left;
+  padding-left: 3%;
+  padding-right: 3%;
+
+  background: linear-gradient(to bottom right, rgba(245,245,255,1), rgba(220,220,220,0.5));
+  margin-bottom: 3%;
+}
+.tab1 th {
+  color: rgba(20,20,80,0.6);
+  font-size: large;
+  font-weight: bold;
+}
+.tab1 td {
+  font-size: small;
+  color: rgba(100,100,100,0.8);
 }
 
-#restaurantData {
-
-}
-
-#restaurantData .leftCol {
+.tab2 {
+  border: 2px groove rgba(200,200,200);
   width: 30%;
-  border-right: 1px solid black;
+  border-radius: 10px;
 }
+
+.tab3 {
+  border: 2px groove rgba(200,200,200);
+  width: 60%;
+  border-radius: 10px;
+}
+
+.gap {
+  margin-bottom: 2%;
+}
+.title {
+  margin-top: 4%;
+  margin-left: 2%;
+  border: 2px inset rgb(200,200,200);
+  background: rgb(230,230,240);
+  border-radius: 10px;
+  width: 10%;
+  text-align: center;
+}
+
+
