@@ -1,0 +1,26 @@
+{% load static %}
+
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="{% static 'restaurace/css/myStyle.css' %}">
+</head>
+<body>
+
+<form action="{% url 'restaurace:restaurantSearch' %}" method="post">
+	{% csrf_token %}
+	<table>
+	{{ form.as_table }}
+	</table>
+	<input type="submit" value="search">
+</form>
+  
+	<table class="tab2">
+		{% for restaurant in restaurants %}
+			<tr><td><a href="{% url 'restaurace:resInfo' restaurant.id %}">{{ restaurant }}</a></td></tr>
+		{% endfor %}
+	</table>
+
+	<div class="gap"></div>
+	<a href="{% url 'restaurace:index' %}">Back to index</a>
+</body>
+</html>

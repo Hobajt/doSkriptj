@@ -8,6 +8,9 @@
   <h1>Restaurace</h1>
   
   <div id="wrapper">
+  <a href="{% url 'restaurace:restaurantSearch' %}">Search for restaurant</a>
+  <div class="gap"></div>
+
   <table>
   {% for restaurant in restaurants %}
     <tr>
